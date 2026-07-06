@@ -2,7 +2,7 @@
 import streamlit as st
 from pymongo import MongoClient
 
-st.title("Sample MongoDB :sunglasses:")
+st.title("Sample MongoDB")
 
 
 uri = st.secrets["MONGO_URI_ST"]
