@@ -1,15 +1,13 @@
-import os
+
+import streamlit as st
 from pymongo import MongoClient
-from dotenv import load_dotenv
 
-load_dotenv()
-uri = os.getenv("MONGO_URI")
+st.title("Sample MongoDB :sunglasses:")
+
+
+uri = st.secrets["MONGO_URI_ST"]
+
 client = MongoClient(uri)
-try:
-    client.admin.command("ping")
-    print("Connected successfully")
-    client.close()
-
-except Exception as e:
-    raise Exception(
-        "The following error occurred: ", e)
+client.admin.command("ping")
+  
+st.success("DB connection done!")
