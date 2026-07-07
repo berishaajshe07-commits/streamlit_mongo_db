@@ -12,9 +12,8 @@ uri = st.secrets["MONGO_URI_ST"]
 server = MongoClient(uri)
 server.admin.command("ping")
 
-# Database and collection
 db = server["sample_mfix"]
-collection = db["users"]
+collection = db["bmi_users"]
 
 st.success("DB connection done!")
 
