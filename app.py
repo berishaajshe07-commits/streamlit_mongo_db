@@ -13,7 +13,7 @@ server = MongoClient(uri)
 server.admin.command("ping")
 
 db = server["sample_mfix"]
-collection = db["bmi_users"]
+collection = db["bmi_records"]
 
 st.success("DB connection done!")
 
