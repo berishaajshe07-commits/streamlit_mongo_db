@@ -12,7 +12,8 @@ uri = st.secrets["MONGO_URI_ST"]
 server = MongoClient(uri)
 server.admin.command("ping")
 
-db = server["BMI_database"]
+# Database and collection
+db = server["sample_mfix"]
 collection = db["users"]
 
 st.success("DB connection done!")
@@ -22,7 +23,7 @@ st.success("DB connection done!")
 name = st.text_input("Name")
 
 height = st.number_input(
-    "Height (m)",
+    "Height (meters)",
     min_value=0.1
 )
 
@@ -32,9 +33,10 @@ weight = st.number_input(
 )
 
 
-# Calculate BMI and save data
+# Button
 if st.button("Calculate BMI"):
 
+    # BMI calculation
     bmi = weight / (height ** 2)
 
 
@@ -47,14 +49,14 @@ if st.button("Calculate BMI"):
     st.write("BMI:", round(bmi, 2))
 
 
-    # Register data in MongoDB
-    user = {
+    # Register in MongoDB
+    data = {
         "name": name,
         "height": height,
         "weight": weight,
         "bmi": round(bmi, 2)
     }
 
-    collection.insert_one(user)
+    collection.insert_one(data)
 
     st.success("Data saved in MongoDB!")
